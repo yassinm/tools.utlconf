@@ -1,0 +1,12 @@
+
+# to find the name of the volume, /dev/zion-vg/root here
+$ lvdisplay
+
+#to extend the volume (started at 15G, but had to bring it down to 13.9G since it had not enough size)
+$ lvextend -L13.9G /dev/zion-vg/root
+
+#needed by resize2fs
+$ sudo e2fsck -f /dev/zion-vg/root
+
+#final resize
+$ resize2fs  /dev/zion-vg/root

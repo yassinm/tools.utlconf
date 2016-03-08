@@ -1,0 +1,269 @@
+# i3 config file (v4)
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+#usually is mapped to Super_L
+set $mod Mod4
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font pango:monospace 8
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start dmenu (a program launcher)
+bindsym $mod+d exec dmenu_run
+# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+# change focus
+#bindsym $mod+j focus left
+#bindsym $mod+k focus down
+#bindsym $mod+l focus up
+#bindsym $mod+semicolon focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+        status_command i3status
+        tray_output primary
+
+        strip_workspace_numbers yes
+}
+
+#------------------------------
+
+#for debugging only
+#set $mod Mod1
+exec_always gnome-terminal --hide-menubar
+
+exec --no-startup-id nm-applet
+
+#I like this as it helps you deal with key conflicts.
+bindsym $mod+Escape mode "pass-through"
+mode "pass-through" {
+  bindsym $mod+Escape mode "default"
+}
+
+#move workspace
+#bindsym $mod+x move workspace to output left
+#bindsym $mod+x move workspace to output right
+
+#to kill windows
+bindsym --release $mod+button2 kill
+
+#yes | no
+focus_follows_mouse no
+
+#------------------------------
+# i3 gnome
+#------------------------------
+
+#lock screen
+bindsym $mod+l exec --no-startup-id "dm-tool lock"
+#bindsym $mod+l exec --no-startup-id "gnome-screensaver-command -a"
+
+#------------------------------
+# i3 apps
+#------------------------------
+
+
+#------------------------------
+# audio
+#------------------------------
+##IMPORTANT
+##use pavucontrol when the audio/sound in i3 is not working
+##
+
+# volume control
+bindsym XF86AudioMute exec /usr/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioLowerVolume exec /usr/bin/pactl set-sink-volume @DEFAULT_SINK@ '-5%'
+bindsym XF86AudioRaiseVolume exec /usr/bin/pactl set-sink-volume @DEFAULT_SINK@ '+5%'
+
+# brightness control
+bindsym XF86MonBrightnessUp exec xbacklight -steps 1 -time 0 -inc 10
+bindsym XF86MonBrightnessDown exec xbacklight -steps 1 -time 0 -dec 5
+
+# show battery stats
+bindsym XF86Battery exec gnome-power-statistics
+
+#------------------------------
+# i3 apps
+#------------------------------
+
+bindsym $mod+t exec --no-startup-id atom --new-window
+bindsym $mod+Return exec --no-startup-id gnome-terminal --hide-menubar
+bindsym $mod+n exec --no-startup-id "nautilus --no-desktop --new-window"
+
+#------------------------------
+# modes
+#------------------------------
+# resize window (you can also use the mouse for that)
+bindsym $mod+r mode "resize"
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+#------------------------------
+# workspaces
+#------------------------------
+
+# switch to workspace
+bindsym $mod+0 workspace 0:utl
+
+bindsym $mod+1 mode "wspace-terminal"
+mode "wspace-terminal" {
+    bindsym F1 workspace 101:trm1
+    bindsym F2 workspace 102:trm2
+    bindsym F3 workspace 103:trm3
+    bindsym F4 workspace 104:trm4
+    bindsym F5 workspace 105:trm5
+    bindsym F6 workspace 106:trm6
+    bindsym F7 workspace 107:trm7
+    bindsym F8 workspace 108:trm8
+    bindsym F9 workspace 109:trm9
+    bindsym F10 workspace 110:trm10
+    bindsym F11 workspace 111:trm11
+    bindsym F12 workspace 112:trm12
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+2 mode "wspace-remote"
+mode "wspace-remote" {
+    bindsym F1 workspace 201:rem1
+    bindsym F2 workspace 202:rem2
+    bindsym F3 workspace 203:rem3
+    bindsym F4 workspace 204:rem4
+    bindsym F5 workspace 205:rem5
+    bindsym F6 workspace 206:rem6
+    bindsym F7 workspace 207:rem7
+    bindsym F8 workspace 208:rem8
+    bindsym F9 workspace 209:rem9
+    bindsym F10 workspace 210:rem10
+    bindsym F11 workspace 211:rem11
+    bindsym F12 workspace 212:rem12
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+3 mode "wspace-web"
+mode "wspace-web" {
+    bindsym F1 workspace 301:web1
+    bindsym F2 workspace 302:web2
+    bindsym F3 workspace 303:web3
+    bindsym F4 workspace 304:web4
+    bindsym F5 workspace 305:web5
+    bindsym F6 workspace 306:web6
+    bindsym F7 workspace 307:web7
+    bindsym F8 workspace 308:web8
+    bindsym F9 workspace 309:web9
+    bindsym F10 workspace 310:web10
+    bindsym F11 workspace 311:web11
+    bindsym F12 workspace 312:web12
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+4 mode "wspace-dev"
+mode "wspace-dev" {
+    bindsym F1 workspace 401:dev1
+    bindsym F2 workspace 402:dev2
+    bindsym F3 workspace 403:dev3
+    bindsym F4 workspace 404:dev4
+    bindsym F5 workspace 405:dev5
+    bindsym F6 workspace 406:dev6
+    bindsym F7 workspace 407:dev7
+    bindsym F8 workspace 408:dev8
+    bindsym F9 workspace 409:dev9
+    bindsym F10 workspace 410:web10
+    bindsym F11 workspace 411:web11
+    bindsym F12 workspace 412:web12
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}

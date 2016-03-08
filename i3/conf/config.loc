@@ -1,0 +1,2 @@
+
+bindsym $mod+g exec --no-startup-id "${HOME}/work/_utl/utl-conf/i3/sbin/chrome.i3 local"
