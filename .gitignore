@@ -1,0 +1,13 @@
+#from merges
+*.orig
+
+#from idea
+*.iml
+*.iws
+.idea
+
+#from gradle
+build.gradle
+
+#from vscode
+.vscode

@@ -1,0 +1,6 @@
+FROM debian:jessie
+
+RUN apt-get update
+
+CMD ["/usr/sbin/sshd", "-D"]
+CMD [ "python", "-m", "SimpleHTTPServer", "8000" ]

@@ -1,0 +1,24 @@
+#force dev to go left
+workspace 1:dev1 output HDMI-0
+workspace 2:dev2 output HDMI-0
+workspace 3:dev3 output HDMI-0
+workspace 4:dev4 output HDMI-0
+workspace 5:dev5 output HDMI-0
+workspace 6:dev6 output HDMI-0
+workspace 7:dev7 output HDMI-0
+workspace 8:dev8 output HDMI-0
+workspace 9:dev9 output HDMI-0
+
+#force web to go left
+workspace 10:web1 output DVI-I-1
+workspace 11:web2 output DVI-I-1
+workspace 12:web3 output DVI-I-1
+workspace 13:web4 output DVI-I-1
+workspace 14:web5 output DVI-I-1
+workspace 15:web6 output DVI-I-1
+workspace 16:web7 output DVI-I-1
+workspace 17:web8 output DVI-I-1
+workspace 18:web9 output DVI-I-1
+workspace 19:web10 output DVI-I-1
+workspace 20:web11 output DVI-I-1
+workspace 21:web12 output DVI-I-1
