@@ -4,6 +4,7 @@ UTLAPPS_nodejs_init(){
 
   alias nodejs-6x='UTLAPPS_nodejs_6x'
   alias nodejs-7x='UTLAPPS_nodejs_7x'
+  alias nodejs-8x='UTLAPPS_nodejs_8x'
 
   alias nodejs-conf='UTLAPPS_nodejs_conf'
   alias nodejs-alias='alias | grep nodejs'
@@ -11,13 +12,18 @@ UTLAPPS_nodejs_init(){
 
 
 UTLAPPS_nodejs_6x(){
-  NODEJS_VERSION="node-v6.10.0-linux-x64"
+  NODEJS_VERSION="nodejs-6-latest"
   UTLAPPS_nodejs_env
 }
 
 
 UTLAPPS_nodejs_7x(){
-  NODEJS_VERSION="node-v7.9.0-linux-x64"
+  NODEJS_VERSION="nodejs-7-latest"
+  UTLAPPS_nodejs_env
+}
+
+UTLAPPS_nodejs_8x(){
+  NODEJS_VERSION="nodejs-8-latest"
   UTLAPPS_nodejs_env
 }
 

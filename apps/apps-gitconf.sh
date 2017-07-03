@@ -10,11 +10,12 @@ UTLAPPS_gitconf_yassinm(){
 
 UTLAPPS_gitconf_global(){
 
-    if [ -e ~/.gitconfig ] ; then
-      sed -i '\:#globalStart:,\:#globalEnd:d' ~/.gitconfig
-    fi
+  if [ -e ~/.gitconfig ] ; then
+    sed -i '\:#globalStart:,\:#globalEnd:d' ~/.gitconfig
+  fi
 
-    git config --global core.autocrlf input
+  git config --global core.autocrlf input
+  # git config --global url.ssh://git@github.com/hypersuite/.insteadOf https://github.com/hypersuite/
 
 cat <<"E_O_F">>~/.gitconfig
 
@@ -43,9 +44,8 @@ cat <<"E_O_F">>~/.gitconfig
   # git pull` instead of `git pull --set-upstream origin BRANCH-123`
   #default = current
 
-[url "ssh://ymo@ymolt:29418"]
-        insteadOf = https://ymolt/dev
-        # ssh://ymo@192.168.2.11:29418/hsuite.gradle.git
+[url "ssh://git@github.com/hypersuite/"]
+	insteadOf = https://github.com/hypersuite/
 
 [alias]
   s = status
@@ -60,8 +60,7 @@ cat <<"E_O_F">>~/.gitconfig
   pending = status --porcelain
 
   #git worktree add ../wspace-reviews FEATURE-10738
-  wt-add = 
-
+ 
   #force push to master
   #git push -f <remote-name> HEAD:master
 
@@ -69,7 +68,7 @@ cat <<"E_O_F">>~/.gitconfig
   #git push -f <remote-name> HEAD:exp/yassinm/projectname
   
   #add remote
-  git remote add localgit ssh://ymo@192.168.2.21:29418/local.utlconf.git
+  #git remote add localgit ssh://ymo@192.168.2.21:29418/local.utlconf.git
 
   uall = remote -v
   uset = !git branch --set-upstream-to

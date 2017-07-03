@@ -4,6 +4,7 @@ UTLAPPS_golang_init(){
   alias golang-env="UTLAPPS_golang_env"
   alias golang-list="UTLAPPS_golang_list"
   alias golang-wspace="UTLAPPS_golang_wspace"
+  alias golang-clone="UTLAPPS_golang_clone"
 
   alias vscode-golang="UTLAPPS_golang_vscode"
 }
@@ -19,6 +20,35 @@ UTLAPPS_golang_run(){
     UTLAPPS_golang_env
     golang ${@}
   )
+}
+
+UTLAPPS_golang_clone(){
+  (
+    set -ex
+
+    local gitUrl="${1}"
+    gitUrl="${gitUrl%/}"
+    gitUrl="${gitUrl%.git}"
+
+    if [ -z "${gitUrl}" ] ; then
+        echo You must pass a url to clone; return
+    fi
+
+    local dname="${gitUrl##*/}"
+    if [ "${dname}" = "${gitUrl}" ] ; then
+      echo invalid url; return 
+    fi 
+
+    local gitproject="${gitUrl##*https://github.com/}"
+    if [ "${gitUrl}" = "${gitproject}" ] ; then
+      echo url must start with https://github.com ; return 
+    fi
+
+    mkdir -p ${dname}-latest
+    git clone ${gitUrl} ${dname}-latest/src/${gitproject}
+
+  )
+
 }
 
 UTLAPPS_golang_vscode(){

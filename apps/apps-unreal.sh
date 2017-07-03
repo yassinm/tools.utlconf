@@ -19,7 +19,7 @@ UTLAPPS_unreal_scripts(){
 
 }
 
-UTLDEV_unreal_install(){
+UTLDEV_unreal_setup(){
     https://wiki.unrealengine.com/Building_On_Linux
 
     build-essential mono-gmcs mono-xbuild mono-dmcs libmono-corlib4.0-cil libmono-system-data-datasetextensions4.0-cil
@@ -32,6 +32,36 @@ UTLDEV_unreal_install(){
     cd unreal.4.12
     ./Setup.sh
     ./GenerateProjectFiles.sh && make
+
+
+}
+
+UTLDEV_unreal_install(){
+    # assume the latest Ubuntu, this is going to be a moving target
+     DEPS="mono-xbuild \
+       mono-dmcs \
+       libmono-microsoft-build-tasks-v4.0-4.0-cil \
+       libmono-system-data-datasetextensions4.0-cil
+       libmono-system-web-extensions4.0-cil
+       libmono-system-management4.0-cil
+       libmono-system-xml-linq4.0-cil
+       libmono-corlib4.5-cil
+       libmono-windowsbase4.0-cil
+       libmono-system-io-compression4.0-cil
+       libmono-system-io-compression-filesystem4.0-cil
+       libmono-system-runtime4.0-cil
+       mono-devel
+       clang-3.9
+       build-essential
+       "
+
+    for DEP in $DEPS; do
+        echo "Attempting installation of missing package: $DEP"
+        (
+            set -ex
+            sudo apt-get install -y $DEP
+        )
+    done
 
 }
 

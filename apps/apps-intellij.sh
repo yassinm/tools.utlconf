@@ -2,6 +2,7 @@ UTLAPPS_intellij_init(){
     UTLAPPS_intellij_env
 
     alias idea-conf="UTLAPPS_intellij_conf"
+    alias idea-clean="UTLAPPS_intellij_clean"
     alias idea-latest="${INTELLIJ_ROOT}/${INTELLIJ_LATEST}/bin/idea.sh &"
 }
 
@@ -14,6 +15,14 @@ UTLAPPS_intellij_env(){
     INTELLIJ_LATEST="idea-latest"
 
     #set +x
+}
+
+UTLAPPS_intellij_clean(){
+    (
+        set -ex
+        rm -rf .idea
+        find . -name "*.iml" | xargs rm -f 
+    )
 }
 
 UTLAPPS_intellij_conf(){

@@ -1,6 +1,7 @@
 UTLAPPS_maven_init(){
-   alias maven-env="UTLAPPS_maven_env"
-   alias maven-proxy="UTLAPPS_maven_proxy"
+  alias maven-env="UTLAPPS_maven_env"
+  alias maven-proxy="UTLAPPS_maven_proxy"
+ 
 }
 
 UTLAPPS_maven_checkpom(){
